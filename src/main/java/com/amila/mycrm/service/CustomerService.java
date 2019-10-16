@@ -1,7 +1,11 @@
 package com.amila.mycrm.service;
 
+import com.amila.mycrm.dto.CustomerDTO;
+
+import java.util.List;
+
 public interface CustomerService {
 
-  public String getCustomers(String text);
+  public List<CustomerDTO> getAllCustomers();
 
 }
