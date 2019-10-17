@@ -16,6 +16,13 @@ public class CustomerDTO {
   public CustomerDTO() {
   }
 
+  public CustomerDTO(int id, String name, String department) {
+    this.id = id;
+    this.name = name;
+    this.department = department;
+  }
+
+  //TODO remove this constructor
   public CustomerDTO(CustomerEntity customerEntity) {
     this.id = customerEntity.getId();
     this.name = customerEntity.getName();

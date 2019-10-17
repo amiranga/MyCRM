@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -36,5 +39,20 @@ public class HomeController {
     List<CustomerDTO> allCustomers = customerService.getAllCustomers();
     logger.info(allCustomers.get(0).toString());
     return new ModelAndView("home");
+  }
+
+  //FIXME : Get customer data from DB!
+  @RequestMapping(value = "/getAllCustomers", method = RequestMethod.GET)
+  public Map<String, Object> getAllCustomers() {
+    logger.info("Testing logging");
+    List<CustomerDTO> allCustomers = new ArrayList<CustomerDTO>();
+    for (int i = 0; i < 100; i++) {
+      allCustomers.add(new CustomerDTO(i, "C" + i, "D" + i));
+    }
+    HashMap<String, Object> stringListHashMap = new HashMap<String, Object>();
+    stringListHashMap.put("Records", allCustomers);
+    stringListHashMap.put("Result", "OK");
+    stringListHashMap.put("TotalRecordCount", 100);
+    return stringListHashMap;
   }
 }

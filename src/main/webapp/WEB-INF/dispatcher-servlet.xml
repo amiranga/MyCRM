@@ -13,7 +13,8 @@
 <!--    <mvc:resources mapping="/images/**" location="/images/"/>-->
     <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/css/**" location="/css/"/>
-    <mvc:resources mapping="/w2ui/**" location="/w2ui/"/>
+    <mvc:resources mapping="/jtable.2.4.0/**" location="/jtable.2.4.0/"/>
+    <mvc:resources mapping="/jquery-ui-1.12.0/**" location="/jquery-ui-1.12.0/"/>
 
     <context:annotation-config/>
 
