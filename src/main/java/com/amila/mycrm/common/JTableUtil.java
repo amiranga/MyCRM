@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class JTableUtil {
 
-  public static <T> Map<String, Object> getJTableFriendlyResponse(T result) {
+  public static <T> Map<String, Object> getJTableFriendlyResponseObject(T result) {
     HashMap<String, Object> output = new HashMap<String, Object>();
     output.put("Result", "OK");
     if (result instanceof List) {
@@ -15,6 +15,12 @@ public class JTableUtil {
     } else {
       output.put("Record", result);
     }
+    return output;
+  }
+
+  public static Map<String, Object> getJTableFriendlyResponseMessage(boolean isSuccess) {
+    HashMap<String, Object> output = new HashMap<String, Object>();
+    output.put("Result", isSuccess ? "OK" : "ERROR");
     return output;
   }
 }

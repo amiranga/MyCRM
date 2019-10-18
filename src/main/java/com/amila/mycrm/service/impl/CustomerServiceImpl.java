@@ -25,4 +25,12 @@ public class CustomerServiceImpl implements CustomerService {
   public CustomerDTO saveCustomer(CustomerDTO customer) {
     return customerDAO.saveCustomer(customer);
   }
+
+  public CustomerDTO deleteCustomer(int id) {
+    return customerDAO.deleteCustomer(id);
+  }
+
+  public CustomerDTO updateCustomer(CustomerDTO customer) {
+    return customerDAO.updateCustomer(customer);
+  }
 }

@@ -18,11 +18,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 
   public List<CustomerDTO> getAllCustomers() {
     Session session = HibernateUtil.getSessionFactory().openSession();
-
     session.beginTransaction();
 
     Query q = session.createQuery("From CustomerEntity ");
-
     List<CustomerEntity> resultList = q.list();
     List<CustomerDTO> customers = new ArrayList<CustomerDTO>();
     System.out.println("num of employess:" + resultList.size());
@@ -32,6 +30,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     return customers;
   }
 
+
   public CustomerDTO saveCustomer(CustomerDTO customer) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     session.beginTransaction();
@@ -40,10 +39,46 @@ public class CustomerDAOImpl implements CustomerDAO {
     customerEntity.setActive((byte) 1);
     customerEntity.setCreatedTime(new Date().getTime());
     customerEntity.setUpdatedTime(new Date().getTime());
+
     Serializable saved = session.save(customerEntity);
     session.getTransaction().commit();
 
     Integer generatedID = (Integer) saved;
     return new CustomerDTO(customerEntity, generatedID);
+  }
+
+
+  public CustomerDTO deleteCustomer(int id) {
+    CustomerDTO deleted = null;
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    session.beginTransaction();
+
+    CustomerEntity customer = session.get(CustomerEntity.class, id);
+    if (customer != null) {
+      session.delete(customer);
+      deleted = new CustomerDTO(customer);
+    }
+    session.getTransaction().commit();
+    return deleted;
+  }
+
+
+  public CustomerDTO updateCustomer(CustomerDTO customer) {
+    CustomerDTO updatedCustomer = null;
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    session.beginTransaction();
+
+    CustomerEntity saved = session.get(CustomerEntity.class, customer.getId());
+    if (saved != null) {
+      saved.setName(customer.getName());
+      saved.setAddress(customer.getAddress());
+      saved.setDepartment(customer.getDepartment());
+      saved.setEmail(customer.getEmail());
+      saved.setMobile(customer.getMobile());
+      saved.setUpdatedTime(new Date().getTime());
+      updatedCustomer = new CustomerDTO(saved);
+    }
+    session.getTransaction().commit();
+    return updatedCustomer;
   }
 }

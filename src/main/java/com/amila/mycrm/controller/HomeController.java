@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,11 +20,10 @@ import java.util.Map;
 @RestController
 public class HomeController {
 
-  Logger logger = LoggerFactory.getLogger(HomeController.class);
+  private Logger logger = LoggerFactory.getLogger(HomeController.class);
 
   @Value("${app.name}")
   private String name;
-
 
   private CustomerService customerService;
 
@@ -37,17 +37,33 @@ public class HomeController {
     return new ModelAndView("home");
   }
 
+  //TODO add pagination support
   @RequestMapping(value = "/getAllCustomers", method = RequestMethod.GET)
   public Map<String, Object> getAllCustomers() {
+    //TODO revisit logs
     logger.debug("Getting all customers");
     List<CustomerDTO> allCustomers = customerService.getAllCustomers();
-    return JTableUtil.getJTableFriendlyResponse(allCustomers);
+    return JTableUtil.getJTableFriendlyResponseObject(allCustomers);
   }
 
   @RequestMapping(value = "/addNewCustomer", method = RequestMethod.GET)
   public Map<String, Object> addNewCustomer(CustomerDTO customer) {
-    logger.debug("Getting all customers");
+    logger.debug("add new customer");
     CustomerDTO saved = customerService.saveCustomer(customer);
-    return JTableUtil.getJTableFriendlyResponse(saved);
+    return JTableUtil.getJTableFriendlyResponseObject(saved);
+  }
+
+  @RequestMapping(value = "/deleteCustomer", method = RequestMethod.GET)
+  public Map<String, Object> deleteCustomer(@RequestParam int id) {
+    logger.debug("delete customer");
+    CustomerDTO deleted = customerService.deleteCustomer(id);
+    return JTableUtil.getJTableFriendlyResponseMessage(deleted != null);
+  }
+
+  @RequestMapping(value = "/updateCustomer", method = RequestMethod.GET)
+  public Map<String, Object> updateCustomer(CustomerDTO customer) {
+    logger.debug("update customer");
+    CustomerDTO updated = customerService.updateCustomer(customer);
+    return JTableUtil.getJTableFriendlyResponseObject(updated);
   }
 }
