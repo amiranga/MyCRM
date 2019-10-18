@@ -7,4 +7,6 @@ import java.util.List;
 public interface CustomerDAO {
 
     public List<CustomerDTO> getAllCustomers();
+
+    public CustomerDTO saveCustomer(CustomerDTO customer);
 }

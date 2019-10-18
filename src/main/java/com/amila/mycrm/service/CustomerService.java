@@ -8,4 +8,6 @@ public interface CustomerService {
 
   public List<CustomerDTO> getAllCustomers();
 
+  public CustomerDTO saveCustomer(CustomerDTO customer);
+
 }

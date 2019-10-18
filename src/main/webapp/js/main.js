@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-  $('#MyTableContainer').jtable({
+  var tableContainer = $('#MyTableContainer');
+  tableContainer.jtable({
     title: 'The Customer List',
     paging: true, //Enable paging
     pageSize: 10, //Set page size (default: 10)
@@ -24,15 +25,30 @@ $(document).ready(function () {
         edit: false
       },
       name: {
-        title: 'Name',
-        width: '23%'
+        title: 'Name'
       },
       department: {
-        title: 'Deparment'
+        title: 'Department',
+        options: {
+          'Promotions': 'Promotions',
+          'Administration': 'Administration',
+          'Engineering': 'Engineering',
+          'Sales': 'Sales',
+          'Transport': 'Transport'
+        }
+      },
+      address: {
+        title: 'Address'
+      },
+      mobile: {
+        title: 'Mobile'
+      },
+      email: {
+        title: 'Email'
       }
     }
   });
 
   //Load student list from server
-  $('#MyTableContainer').jtable('load');
+  tableContainer.jtable('load');
 });

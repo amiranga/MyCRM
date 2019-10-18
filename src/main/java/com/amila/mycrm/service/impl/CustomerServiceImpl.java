@@ -21,4 +21,8 @@ public class CustomerServiceImpl implements CustomerService {
   public List<CustomerDTO> getAllCustomers() {
     return customerDAO.getAllCustomers();
   }
+
+  public CustomerDTO saveCustomer(CustomerDTO customer) {
+    return customerDAO.saveCustomer(customer);
+  }
 }

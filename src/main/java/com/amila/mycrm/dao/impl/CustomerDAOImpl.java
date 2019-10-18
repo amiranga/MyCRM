@@ -8,7 +8,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,5 +30,20 @@ public class CustomerDAOImpl implements CustomerDAO {
       customers.add(new CustomerDTO(next));
     }
     return customers;
+  }
+
+  public CustomerDTO saveCustomer(CustomerDTO customer) {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    session.beginTransaction();
+
+    CustomerEntity customerEntity = new CustomerEntity(customer);
+    customerEntity.setActive((byte) 1);
+    customerEntity.setCreatedTime(new Date().getTime());
+    customerEntity.setUpdatedTime(new Date().getTime());
+    Serializable saved = session.save(customerEntity);
+    session.getTransaction().commit();
+
+    Integer generatedID = (Integer) saved;
+    return new CustomerDTO(customerEntity, generatedID);
   }
 }

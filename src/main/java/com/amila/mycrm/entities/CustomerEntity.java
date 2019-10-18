@@ -1,5 +1,7 @@
 package com.amila.mycrm.entities;
 
+import com.amila.mycrm.dto.CustomerDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,7 +17,19 @@ public class CustomerEntity {
   private Long createdTime;
   private Long updatedTime;
 
+  public CustomerEntity() {
+  }
+
+  public CustomerEntity(CustomerDTO customerDTO) {
+    this.name = customerDTO.getName();
+    this.department = customerDTO.getDepartment();
+    this.address = customerDTO.getAddress();
+    this.mobile = customerDTO.getMobile();
+    this.email = customerDTO.getEmail();
+  }
+
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ID")
   public int getId() {
     return id;
