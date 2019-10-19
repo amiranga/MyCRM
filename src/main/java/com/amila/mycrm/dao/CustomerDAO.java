@@ -1,12 +1,11 @@
 package com.amila.mycrm.dao;
 
 import com.amila.mycrm.dto.CustomerDTO;
-
-import java.util.List;
+import com.amila.mycrm.dto.CustomerListDTO;
 
 public interface CustomerDAO {
 
-  List<CustomerDTO> getAllCustomers();
+  CustomerListDTO getAllCustomers(int startIndex, int pageSize, String sorting);
 
   CustomerDTO saveCustomer(CustomerDTO customer);
 

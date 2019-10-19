@@ -2,6 +2,8 @@ package com.amila.mycrm.controller;
 
 import com.amila.mycrm.common.JTableUtil;
 import com.amila.mycrm.dto.CustomerDTO;
+import com.amila.mycrm.dto.CustomerListDTO;
+import com.amila.mycrm.dto.GridSettingsDTO;
 import com.amila.mycrm.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 import java.util.Map;
 
 
@@ -37,20 +38,20 @@ public class HomeController {
     return new ModelAndView("home");
   }
 
-  //TODO add pagination support
   @RequestMapping(value = "/getAllCustomers", method = RequestMethod.GET)
-  public Map<String, Object> getAllCustomers() {
+  public Map<String, Object> getAllCustomers(GridSettingsDTO gridSettings) {
     //TODO revisit logs
     logger.debug("Getting all customers");
-    List<CustomerDTO> allCustomers = customerService.getAllCustomers();
-    return JTableUtil.getJTableFriendlyResponseObject(allCustomers);
+    CustomerListDTO customerList = customerService.getAllCustomers(
+        gridSettings.getJtStartIndex(), gridSettings.getJtPageSize(), gridSettings.getJtSorting());
+    return JTableUtil.getJTableFriendlyResponseObject(customerList.getCustomers(), customerList.getTotal());
   }
 
   @RequestMapping(value = "/addNewCustomer", method = RequestMethod.GET)
   public Map<String, Object> addNewCustomer(CustomerDTO customer) {
     logger.debug("add new customer");
     CustomerDTO saved = customerService.saveCustomer(customer);
-    return JTableUtil.getJTableFriendlyResponseObject(saved);
+    return JTableUtil.getJTableFriendlyResponseObject(saved, null);
   }
 
   @RequestMapping(value = "/deleteCustomer", method = RequestMethod.GET)
@@ -64,6 +65,6 @@ public class HomeController {
   public Map<String, Object> updateCustomer(CustomerDTO customer) {
     logger.debug("update customer");
     CustomerDTO updated = customerService.updateCustomer(customer);
-    return JTableUtil.getJTableFriendlyResponseObject(updated);
+    return JTableUtil.getJTableFriendlyResponseObject(updated, null);
   }
 }

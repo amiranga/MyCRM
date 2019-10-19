@@ -3,6 +3,7 @@ package com.amila.mycrm.dao.impl;
 import com.amila.mycrm.common.HibernateUtil;
 import com.amila.mycrm.dao.CustomerDAO;
 import com.amila.mycrm.dto.CustomerDTO;
+import com.amila.mycrm.dto.CustomerListDTO;
 import com.amila.mycrm.entities.CustomerEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -16,18 +17,21 @@ import java.util.List;
 @Service
 public class CustomerDAOImpl implements CustomerDAO {
 
-  public List<CustomerDTO> getAllCustomers() {
+  public CustomerListDTO getAllCustomers(int startIndex, int pageSize, String sorting) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     session.beginTransaction();
-
-    Query q = session.createQuery("From CustomerEntity ");
-    List<CustomerEntity> resultList = q.list();
+    String queryStr = "From CustomerEntity c ORDER BY c." + sorting;
+    Query custQuery = session.createQuery(queryStr).setFirstResult(startIndex).setMaxResults(pageSize);
+    List<CustomerEntity> resultList = custQuery.list();
     List<CustomerDTO> customers = new ArrayList<CustomerDTO>();
     System.out.println("num of employess:" + resultList.size());
     for (CustomerEntity next : resultList) {
       customers.add(new CustomerDTO(next));
     }
-    return customers;
+
+    Query countQuery = session.createQuery("Select count(*) From CustomerEntity");
+    Long totalCustCount = (Long) countQuery.uniqueResult();
+    return new CustomerListDTO(customers, totalCustCount);
   }
 
 
