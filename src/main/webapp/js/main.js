@@ -46,7 +46,16 @@ $(document).ready(function () {
       email: {
         title: 'Email'
       }
-    }
+    },
+    messages: {
+      serverCommunicationError: 'An error occurred while communicating to the server.',
+      loadingMessage: 'Loading customer list...',
+      noDataAvailable: 'No data available!',
+      addNewRecord: 'Add new customer',
+      editRecord: 'Edit customer',
+      deleteConfirmation: 'This customer record will be deleted. Are you sure?'
+    },
+    jqueryuiTheme: true
   });
 
   //Load student list from server

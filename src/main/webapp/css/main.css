@@ -1,0 +1,13 @@
+.page-ttl {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 30px;
+}
+
+.table-cont {
+    padding: 10px 50px;
+}
+
+div.jtable-main-container table.jtable tbody > tr {
+    height: 45px;
+}
