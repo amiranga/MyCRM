@@ -20,6 +20,6 @@
         <property name="current_session_context_class">thread</property>
 
         <mapping class="com.amila.mycrm.entities.CustomerEntity"/>
-        <mapping class="com.amila.mycrm.entities.CustomerOperationsEntity"/>
+        <mapping class="com.amila.mycrm.entities.LogEntity"/>
     </session-factory>
 </hibernate-configuration>

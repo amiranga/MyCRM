@@ -30,11 +30,11 @@ $(document).ready(function () {
       department: {
         title: 'Department',
         options: {
-          'Promotions': 'Promotions',
-          'Administration': 'Administration',
-          'Engineering': 'Engineering',
-          'Sales': 'Sales',
-          'Transport': 'Transport'
+          'PROMOTIONS': 'Promotions',
+          'ADMINISTRATION': 'Administration',
+          'ENGINEERING': 'Engineering',
+          'SALES': 'Sales',
+          'TRANSPORT': 'Transport'
         }
       },
       address: {

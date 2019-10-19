@@ -1,4 +1,4 @@
-package com.amila.mycrm.common;
+package com.amila.mycrm.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

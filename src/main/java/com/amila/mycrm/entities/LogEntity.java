@@ -3,14 +3,24 @@ package com.amila.mycrm.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "CUSTOMER_OPERATIONS", schema = "MY_CRM", catalog = "")
-public class CustomerOperationsEntity {
+@Table(name = "LOG", schema = "MY_CRM", catalog = "")
+public class LogEntity {
   private int id;
   private long timestamp;
   private String operation;
   private String log;
 
+  public LogEntity() {
+  }
+
+  public LogEntity(long timestamp, String operation, String log) {
+    this.timestamp = timestamp;
+    this.operation = operation;
+    this.log = log;
+  }
+
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ID")
   public int getId() {
     return id;
@@ -55,7 +65,7 @@ public class CustomerOperationsEntity {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
-    CustomerOperationsEntity that = (CustomerOperationsEntity) o;
+    LogEntity that = (LogEntity) o;
 
     if (id != that.id) return false;
     if (timestamp != that.timestamp) return false;

@@ -1,14 +1,13 @@
 package com.amila.mycrm.controller;
 
-import com.amila.mycrm.common.JTableUtil;
 import com.amila.mycrm.dto.CustomerDTO;
 import com.amila.mycrm.dto.CustomerListDTO;
 import com.amila.mycrm.dto.GridSettingsDTO;
 import com.amila.mycrm.service.CustomerService;
+import com.amila.mycrm.util.JTableUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,14 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
-
 @RestController
 public class HomeController {
 
   private Logger logger = LoggerFactory.getLogger(HomeController.class);
-
-  @Value("${app.name}")
-  private String name;
 
   private CustomerService customerService;
 

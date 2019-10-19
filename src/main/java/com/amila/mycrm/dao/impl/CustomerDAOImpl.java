@@ -1,10 +1,13 @@
 package com.amila.mycrm.dao.impl;
 
-import com.amila.mycrm.common.HibernateUtil;
+import com.amila.mycrm.common.CustomerEnums.CustomerOperation;
 import com.amila.mycrm.dao.CustomerDAO;
 import com.amila.mycrm.dto.CustomerDTO;
 import com.amila.mycrm.dto.CustomerListDTO;
 import com.amila.mycrm.entities.CustomerEntity;
+import com.amila.mycrm.entities.LogEntity;
+import com.amila.mycrm.util.HibernateUtil;
+import com.amila.mycrm.util.LogTableUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Service;
@@ -39,16 +42,26 @@ public class CustomerDAOImpl implements CustomerDAO {
     Session session = HibernateUtil.getSessionFactory().openSession();
     session.beginTransaction();
 
+    long now = new Date().getTime();
+
     CustomerEntity customerEntity = new CustomerEntity(customer);
     customerEntity.setActive((byte) 1);
-    customerEntity.setCreatedTime(new Date().getTime());
-    customerEntity.setUpdatedTime(new Date().getTime());
+    customerEntity.setCreatedTime(now);
+    customerEntity.setUpdatedTime(now);
 
+    Integer newCustId = 0;
     Serializable saved = session.save(customerEntity);
+    if (saved != null) {
+      newCustId = (Integer) saved;
+
+      CustomerOperation operation = CustomerOperation.ADD;
+      LogEntity log = new LogEntity(now, operation.name(), LogTableUtil.generateLog(operation, newCustId));
+      session.save(log);
+    }
+
     session.getTransaction().commit();
 
-    Integer generatedID = (Integer) saved;
-    return new CustomerDTO(customerEntity, generatedID);
+    return new CustomerDTO(customerEntity, newCustId);
   }
 
 
@@ -61,6 +74,10 @@ public class CustomerDAOImpl implements CustomerDAO {
     if (customer != null) {
       session.delete(customer);
       deleted = new CustomerDTO(customer);
+
+      CustomerOperation operation = CustomerOperation.DELETE;
+      LogEntity log = new LogEntity(new Date().getTime(), operation.name(), LogTableUtil.generateLog(operation, id));
+      session.save(log);
     }
     session.getTransaction().commit();
     return deleted;
@@ -72,6 +89,8 @@ public class CustomerDAOImpl implements CustomerDAO {
     Session session = HibernateUtil.getSessionFactory().openSession();
     session.beginTransaction();
 
+    long now = new Date().getTime();
+
     CustomerEntity saved = session.get(CustomerEntity.class, customer.getId());
     if (saved != null) {
       saved.setName(customer.getName());
@@ -79,8 +98,12 @@ public class CustomerDAOImpl implements CustomerDAO {
       saved.setDepartment(customer.getDepartment());
       saved.setEmail(customer.getEmail());
       saved.setMobile(customer.getMobile());
-      saved.setUpdatedTime(new Date().getTime());
+      saved.setUpdatedTime(now);
       updatedCustomer = new CustomerDTO(saved);
+
+      CustomerOperation operation = CustomerOperation.EDIT;
+      LogEntity log = new LogEntity(now, operation.name(), LogTableUtil.generateLog(operation, customer.getId()));
+      session.save(log);
     }
     session.getTransaction().commit();
     return updatedCustomer;

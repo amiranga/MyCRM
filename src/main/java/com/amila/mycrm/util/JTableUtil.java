@@ -1,4 +1,4 @@
-package com.amila.mycrm.common;
+package com.amila.mycrm.util;
 
 import java.util.HashMap;
 import java.util.List;
