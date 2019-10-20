@@ -29,4 +29,13 @@ public class GridSettingsDTO {
   public void setJtSorting(String jtSorting) {
     this.jtSorting = jtSorting;
   }
+
+  @Override
+  public String toString() {
+    return "GridSettingsDTO{" +
+        "jtStartIndex=" + jtStartIndex +
+        ", jtPageSize=" + jtPageSize +
+        ", jtSorting='" + jtSorting + '\'' +
+        '}';
+  }
 }

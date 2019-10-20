@@ -1,7 +1,10 @@
 .page-ttl {
     text-align: center;
-    margin-top: 30px;
     font-size: 30px;
+    background: #f6f6f6;
+    margin: 30px 50px 10px;
+    padding: 10px 0;
+    color: #505050;
 }
 
 .table-cont {

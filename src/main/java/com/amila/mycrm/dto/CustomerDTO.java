@@ -1,11 +1,12 @@
 package com.amila.mycrm.dto;
 
+import com.amila.mycrm.common.CustomerEnums.Department;
 import com.amila.mycrm.entities.CustomerEntity;
 
 public class CustomerDTO {
   private int id;
   private String name;
-  private String department;
+  private Department department;
   private String address;
   private String mobile;
   private String email;
@@ -19,7 +20,7 @@ public class CustomerDTO {
   public CustomerDTO(CustomerEntity customerEntity) {
     this.id = customerEntity.getId();
     this.name = customerEntity.getName();
-    this.department = customerEntity.getDepartment();
+    this.department = Department.valueOf(customerEntity.getDepartment());
     this.address = customerEntity.getAddress();
     this.mobile = customerEntity.getMobile();
     this.email = customerEntity.getEmail();
@@ -31,7 +32,7 @@ public class CustomerDTO {
   public CustomerDTO(CustomerEntity customerEntity, int id) {
     this.id = id;
     this.name = customerEntity.getName();
-    this.department = customerEntity.getDepartment();
+    this.department = Department.valueOf(customerEntity.getDepartment());
     this.address = customerEntity.getAddress();
     this.mobile = customerEntity.getMobile();
     this.email = customerEntity.getEmail();
@@ -56,11 +57,11 @@ public class CustomerDTO {
     this.name = name;
   }
 
-  public String getDepartment() {
+  public Department getDepartment() {
     return department;
   }
 
-  public void setDepartment(String department) {
+  public void setDepartment(Department department) {
     this.department = department;
   }
 

@@ -2,11 +2,11 @@ $(document).ready(function () {
 
   var tableContainer = $('#MyTableContainer');
   tableContainer.jtable({
-    title: 'The Customer List',
-    paging: true, //Enable paging
-    pageSize: 10, //Set page size (default: 10)
-    sorting: true, //Enable sorting
-    defaultSorting: 'name ASC', //Set default sorting
+    title: 'Customers',
+    paging: true,
+    pageSize: 10,
+    sorting: true,
+    defaultSorting: 'id ASC',
     ajaxSettings: {
       type: 'GET',
       dataType: 'json'
@@ -58,6 +58,5 @@ $(document).ready(function () {
     jqueryuiTheme: true
   });
 
-  //Load student list from server
   tableContainer.jtable('load');
 });

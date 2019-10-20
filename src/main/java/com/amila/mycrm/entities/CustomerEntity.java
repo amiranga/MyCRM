@@ -22,7 +22,7 @@ public class CustomerEntity {
 
   public CustomerEntity(CustomerDTO customerDTO) {
     this.name = customerDTO.getName();
-    this.department = customerDTO.getDepartment();
+    this.department = customerDTO.getDepartment().name();
     this.address = customerDTO.getAddress();
     this.mobile = customerDTO.getMobile();
     this.email = customerDTO.getEmail();
