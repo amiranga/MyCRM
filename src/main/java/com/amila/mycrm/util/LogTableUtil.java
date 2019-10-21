@@ -2,6 +2,9 @@ package com.amila.mycrm.util;
 
 import com.amila.mycrm.common.CustomerEnums.CustomerOperation;
 
+/**
+ * @author amila
+ */
 public class LogTableUtil {
 
   public static String generateLog(CustomerOperation operation, int id) {

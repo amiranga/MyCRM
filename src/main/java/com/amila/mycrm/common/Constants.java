@@ -1,5 +1,10 @@
 package com.amila.mycrm.common;
 
+/**
+ * @author amila
+ * <p>
+ * to define all constants
+ */
 public class Constants {
   public static class ErrorMessage {
     public static final String UNKNOWN_DEPARTMENT = "Department is invalid";

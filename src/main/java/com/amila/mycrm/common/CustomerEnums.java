@@ -1,5 +1,10 @@
 package com.amila.mycrm.common;
 
+/**
+ * @author amila
+ * <p>
+ * To store enums
+ */
 public class CustomerEnums {
 
   public enum Department {

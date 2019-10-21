@@ -1,5 +1,10 @@
 package com.amila.mycrm.common;
 
+/**
+ * @author amila
+ * <p>
+ * Wrapper for Java Eception
+ */
 public class MyCRMException extends Exception {
 
   private String logMessage;

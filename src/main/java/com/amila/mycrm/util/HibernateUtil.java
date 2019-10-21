@@ -3,6 +3,11 @@ package com.amila.mycrm.util;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * @author amila
+ * <p>
+ * To Create hibernte session factory
+ */
 public class HibernateUtil {
 
   private static final SessionFactory sessionFactory = buildSessionFactory();

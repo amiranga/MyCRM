@@ -18,6 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
+/**
+ * @author amila
+ */
 @RestController
 public class HomeController {
 
@@ -35,6 +38,12 @@ public class HomeController {
     return new ModelAndView("home");
   }
 
+  /**
+   * Endpoint to list all customers
+   *
+   * @param gridSettings contains pagination parameters
+   * @return List of customers
+   */
   @RequestMapping(value = "/getAllCustomers", method = RequestMethod.GET)
   public Map<String, Object> getAllCustomers(GridSettingsDTO gridSettings) {
     logger.debug("loading customer list {}", gridSettings);
@@ -47,6 +56,12 @@ public class HomeController {
     }
   }
 
+  /**
+   * Endpoint to add a customer
+   *
+   * @param customer
+   * @return newly added customer object
+   */
   @RequestMapping(value = "/addNewCustomer", method = RequestMethod.GET)
   public Map<String, Object> addNewCustomer(CustomerDTO customer) {
     logger.debug("add new customer request {}", customer);
@@ -59,6 +74,12 @@ public class HomeController {
     }
   }
 
+  /**
+   * Endpoint to delete customer
+   *
+   * @param id customer id to be deleted
+   * @return success/error object
+   */
   @RequestMapping(value = "/deleteCustomer", method = RequestMethod.GET)
   public Map<String, Object> deleteCustomer(@RequestParam int id) {
     logger.debug("delete new customer request id = {}", id);
@@ -70,6 +91,12 @@ public class HomeController {
     }
   }
 
+  /**
+   * Endpoint to edit customer
+   *
+   * @param customer
+   * @return edited customer
+   */
   @RequestMapping(value = "/updateCustomer", method = RequestMethod.GET)
   public Map<String, Object> updateCustomer(CustomerDTO customer) {
     logger.debug("update new customer request {}", customer);

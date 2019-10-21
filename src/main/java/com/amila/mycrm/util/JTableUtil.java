@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author amila
+ *
+ * To convert response to jTable readable format
+ */
 public class JTableUtil {
 
   public static <T extends List> Map<String, Object> formatList(T result, Long resultCount) {
