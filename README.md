@@ -1,6 +1,6 @@
 # MyCRM
 
-Simple application to manage customer data in an organization
+Application to manage customer data in an organization.
 
 
 ### Prerequisites
@@ -11,7 +11,7 @@ Simple application to manage customer data in an organization
 * Mysql
 
 
-### Installing
+### Developer Guide
 
 1. Clone the repo
     ```sh
@@ -21,14 +21,14 @@ Simple application to manage customer data in an organization
 
 3. Update mysql user name and password inside `/src/main/resources/hibernate.cfg.xml` file.
 
-4. Install dependancies and build the project `config.js`
+4. Install dependancies and build the project
     ```sh
     mvn clean install
     ```
 
 5. Deploy generated `target/mycrm.war` in wildfly
     
-    If you are using InteliJ Idea, Use following configurations to deploy the application
+    If you are using IntelliJ IDEA, Use following configurations to deploy the application
     
     ![deployment configs](https://user-images.githubusercontent.com/8085994/67230896-cffa4f00-f45b-11e9-8496-6b66755ac0cb.png?raw=true "Title")
 
@@ -38,9 +38,9 @@ Simple application to manage customer data in an organization
 ### Built With
 
 * [Spring](https://spring.io/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [Hibernate](https://hibernate.org/orm/) - ORM tool
-* [jtable](http://www.jtable.org) - jQuery Framework to create CRUD tables
+* [Maven](https://maven.apache.org/) - Dependency management and build tool
+* [Hibernate](https://hibernate.org/orm/) - ORM framework
+* [jtable](http://www.jtable.org) - jQuery framework to create CRUD tables
 
 ### Directory Structure
 
@@ -77,21 +77,21 @@ Simple application to manage customer data in an organization
 ```
 ### Application User Interface
 
-*  List users
+*  List Customers
 
-![List](https://user-images.githubusercontent.com/8085994/67230889-cec92200-f45b-11e9-9ee6-685b5a026944.png?raw=true "Title")
+![List](https://user-images.githubusercontent.com/8085994/67230889-cec92200-f45b-11e9-9ee6-685b5a026944.png?raw=true "List users")
 
-*  Add users
+*  Add Customers
 
-![add](https://user-images.githubusercontent.com/8085994/67230892-cec92200-f45b-11e9-9a81-d57f83332a7e.png?raw=true "Title")
+![add](https://user-images.githubusercontent.com/8085994/67230892-cec92200-f45b-11e9-9a81-d57f83332a7e.png?raw=true "Add Customers")
 
-*  Edit users
+*  Edit Customers
 
-![edit](https://user-images.githubusercontent.com/8085994/67230894-cf61b880-f45b-11e9-9dde-59fb13135414.png?raw=true "Title")
+![edit](https://user-images.githubusercontent.com/8085994/67230894-cf61b880-f45b-11e9-9dde-59fb13135414.png?raw=true "Edit Customers")
 
-*  Delete users
+*  Delete Customers
 
-![delete](https://user-images.githubusercontent.com/8085994/67230893-cf61b880-f45b-11e9-83d9-b293f972f46a.png?raw=true "Title")
+![delete](https://user-images.githubusercontent.com/8085994/67230893-cf61b880-f45b-11e9-83d9-b293f972f46a.png?raw=true "Delete Customers")
 
 
 ### License
